@@ -4,11 +4,8 @@ import org.scalatest.matchers.ShouldMatchers
 class Ex3Suite extends FunSuite with ShouldMatchers {
   lazy val factors: Stream[Long] = Stream.cons(2, factors.map(_ + 1))
 
-  def lowestFactor(i: Long): Option[Long] = {
-    factors.takeWhile(_ < i / 2).find((j: Long) => (i % j == 0))
-  }
   def ex3(i: Long): Long = {
-   val f = lowestFactor(i)
+   val f = factors.takeWhile(_ < i / 2).find(j => (i % j == 0))
    f match {
       case None => i
       case _ => ex3(i/f.get)		
