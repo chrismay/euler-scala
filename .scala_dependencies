@@ -4,13 +4,17 @@
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex2.scala -> /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex2.scala
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex1.scala -> /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex1.scala
 -------
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$lowestFactor$2.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$1.class
-/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$pickFactor$1.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$factors$1.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$6.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$factors$1$$anonfun$apply$1.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$2.class
-/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$naturals$1.class
-/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$naturals$1$$anonfun$apply$1.class
-/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$pickFactor$2.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$3.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$5.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$lowestFactor$1.class
+/Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex3.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex3Suite$$anonfun$4.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex2.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex2Suite$$anonfun$fib$1.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex2.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex2Suite$$anonfun$2.class
 /Users/cusaab/Documents/scala-workspace/euler/src/test/scala/Ex2.scala -> /Users/cusaab/Documents/scala-workspace/euler/bin/Ex2Suite$$anonfun$ex2$3.class
