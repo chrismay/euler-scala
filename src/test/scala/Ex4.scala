@@ -7,11 +7,11 @@ class Ex4Suite extends FunSuite with ShouldMatchers {
   def isPalindrome(num:Int):Boolean ={
     num.toString().reverse.toInt == num
   }
-
-  def ex4(max:Int):Int = {
-   (1 to max).flatMap(i=>((1 to max).map(j=>i*j))).sorted(Ordering.Int).reverse.find(isPalindrome).getOrElse(1)
-    
+  
+  def ex4(max:Int) :Int = {
+    (for (x<-(1 to max); y<-(1 to max)) yield x*y).sortWith(_>_).find(isPalindrome).getOrElse(1)
   }
+  
   
   test("Largest product-of-1-digit-numbers palindrome is 9")(ex4(9) should equal(9))
   test("Largest product-of-2-digit-numbers palindrome is 9009")(ex4(99) should equal(9009))
