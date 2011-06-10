@@ -1,8 +1,12 @@
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
 
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+
+@RunWith(classOf[JUnitRunner])
 class Ex2Suite extends FunSuite with ShouldMatchers {
-  
+ 
   lazy val fib: Stream[Int] = Stream.cons(0, Stream.cons(1, fib.zip(fib.tail).map(p => p._1 + p._2)))
 
   def ex2(max: Int): Int = {

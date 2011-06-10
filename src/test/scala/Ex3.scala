@@ -1,8 +1,8 @@
 import org.scalatest.FunSuite
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import Iterator.iterate
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class Ex3Suite extends FunSuite  with ShouldMatchers {

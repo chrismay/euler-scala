@@ -1,6 +1,9 @@
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class Ex1Suite extends FunSuite with ShouldMatchers{
    def multipleOf3Or5(i: Int): Int = {
     if (i % 3 == 0 || i % 5 == 0) 1 else 0
