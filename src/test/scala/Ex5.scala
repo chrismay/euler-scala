@@ -23,34 +23,37 @@ class Ex5Suite extends FunSuite with ShouldMatchers {
    *  Map of prime factor->power for a given value
    */
   def primeFactors(x: Int): Map[Int, Int] = {
-    factorIterator(x).foldLeft(Map.empty[Int, Int])((factors, f) => {
+    factorIterator(x).foldLeft(Map[Int, Int]())((factors, f) => {
       factors + ((f._1, 1 + factors.getOrElse(f._1, 0)))
     })
   }
 
   /**
-   * Given an integer, emit pairs of it's prime factors + quotients, repeatedly
+   * Given an integer, emit Pairs of its prime factors + quotients, repeatedly
    * dividing the quotient by the next lowest prime factor
-   *
+   * e.g. 12=>(2,6),(2,3),(3,1)
    */
-  def factorIterator(x: Int): Iterator[Tuple2[Int, Int]] = {
-    iterate((1, x))(p => (lowestFactor(p._2), p._2 / lowestFactor(p._2))).drop(1).takeWhile(t => (t._1 > 1))
+  def factorIterator(x: Int): Iterator[(Int,Int)] = {
+    iterate((1, x))(p => ({
+        val lf = lowestFactor(p._2)
+        (lf, p._2 /lf)        
+    }
+    )).drop(1).takeWhile(t => (t._1 > 1))
   }
 
   def lowestFactor(x: Int): Int = {
     (2 to x/2).find(y => ((x % y) == 0)).getOrElse(x)
   }
+  
+  def greaterOf(x:Int,y:Int):Int ={if (x > y) x else y}
 
-  def addFactors(m: Map[Int, Int], y: Int): Map[Int, Int] = {
-    m.merge(primeFactors(y), (i, j) => (if (i > j) i else j))
+  def addFactors(m: Map[Int, Int], y: Int): Map[Int, Int] = { m.merge(primeFactors(y), greaterOf) }
+
+  def lowestCommonMultiple(x: Int): Double = {
+    val allPrimeFactors = ((1 to x).foldLeft(Map[Int, Int]())(addFactors))
+    allPrimeFactors.foldLeft(1d)((acc: Double, kv) => (acc * Math.pow(kv._1, kv._2)))
   }
-
-  def lowestCommonMultiple(x: Int): Int = {
-    val allPrimeFactors = ((1 to x).foldLeft(Map.empty[Int, Int])(addFactors))
-    allPrimeFactors.foldLeft(1d)((acc: Double, kv) => (acc * Math.pow(kv._1, kv._2))).toInt
-
-  }
+  
   test("lowest common mulitple of 20 is 232792560")(lowestCommonMultiple(20) should equal(232792560))
-
   test("lowest common mulitple of 10 is 2520")(lowestCommonMultiple(10) should equal(2520))
 }
