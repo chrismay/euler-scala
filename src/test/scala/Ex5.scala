@@ -34,24 +34,23 @@ class Ex5Suite extends FunSuite with ShouldMatchers {
    * e.g. 12=>(2,6),(2,3),(3,1)
    */
   def factorIterator(x: Int): Iterator[(Int,Int)] = {
-    iterate((1, x))(p => ({
+    iterate((1, x))(p => {
         val lf = lowestFactor(p._2)
         (lf, p._2 /lf)        
     }
-    )).drop(1).takeWhile(t => (t._1 > 1))
+    ).drop(1).takeWhile(t => (t._1 > 1))
   }
 
   def lowestFactor(x: Int): Int = {
-    (2 to x/2).find(y => ((x % y) == 0)).getOrElse(x)
+    (2 to x/2).find(x % _ == 0).getOrElse(x)
   }
   
   def greaterOf(x:Int,y:Int):Int ={if (x > y) x else y}
 
-  def addFactors(m: Map[Int, Int], y: Int): Map[Int, Int] = { m.merge(primeFactors(y), greaterOf) }
 
   def lowestCommonMultiple(x: Int): Double = {
-    val allPrimeFactors = ((1 to x).foldLeft(Map[Int, Int]())(addFactors))
-    allPrimeFactors.foldLeft(1d)((acc: Double, kv) => (acc * Math.pow(kv._1, kv._2)))
+    val allPrimeFactors = (1 to x).foldLeft(Map[Int, Int]())((m,y)=>m.merge(primeFactors(y), greaterOf))
+    allPrimeFactors.foldLeft(1d)((acc, kv) => (acc * Math.pow(kv._1, kv._2)))
   }
   
   test("lowest common mulitple of 20 is 232792560")(lowestCommonMultiple(20) should equal(232792560))
