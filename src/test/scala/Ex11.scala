@@ -5,6 +5,11 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class Ex11 extends FunSuite with ShouldMatchers {
+  class Grid(data: List[List[Int]]) {
+    def findMaxProduct= data.map((x: List[Int]) => x.foldLeft(1)(_ * _)).max
+  }
+  implicit def l2grid(l:List[List[Int]])=new Grid(l)
+  
   val data =
     List("08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08",
       "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00",
@@ -34,19 +39,9 @@ class Ex11 extends FunSuite with ShouldMatchers {
         List(3, 4, 5, 6))))
 
   val grid = gridFromStrings(data)
-  println(quadsFromGrid(grid))
-  println(quadsFromGrid(flipLR(grid)))
-  println(quadsFromGrid(grid).map((x: List[Int]) => x.foldLeft(1)(_ * _)).max)
-  println(quadsFromGrid(flipLR(grid)).map((x: List[Int]) => x.foldLeft(1)(_ * _)).max)
+  println(quadsFromGrid(grid).findMaxProduct)
+  println(quadsFromGrid(rotate90Deg(grid)).findMaxProduct)
 
-  val mini: List[List[Int]] = List(
-    List(1, 2, 3),
-    List(4, 5, 6),
-    List(7, 8, 9))
- println(rotate90Deg(mini))
-
-  println(quadsFromGrid(rotate90Deg(grid)).map((x: List[Int]) => x.foldLeft(1)(_ * _)).max)
-  
   def gridFromStrings(source: List[String]): List[List[Int]] = {
     source.map((nums: String) => List.fromArray(nums.split(" ")).map(_.toInt))
   }
@@ -60,10 +55,6 @@ class Ex11 extends FunSuite with ShouldMatchers {
 
   def quadsFromGrid(grid: List[List[Int]]): List[List[Int]] = {
     grid.flatMap(line => lrQuadsFromLine(line, List.empty))
-  }
-
-  def flipLR(grid: List[List[Int]]): List[List[Int]] = {
-    grid map ((l: List[Int]) => l.reverse)
   }
 
   def rotate90Deg(grid: List[List[Int]]): List[List[Int]] = {
