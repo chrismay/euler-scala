@@ -7,12 +7,12 @@ import org.scalatest.junit.JUnitRunner
 class Ex11 extends FunSuite with ShouldMatchers {
 
   class QuadList(data: List[List[Int]]) {
-    def findMaxProduct = data.map((x: List[Int]) => x.foldLeft(1)(_ * _)).max
+    def findMaxProduct = data.map((x: List[Int]) => x.reduce(_ * _)).max
   }
 
   class Grid(data: List[List[Int]]) {
 
-    def quadsFromGrid(): QuadList = {
+    def toQuadList() = {
       def lrQuadsFromLine(line: List[Int], accumulator: List[List[Int]]): List[List[Int]] = {
         if (line.length < 4)
           accumulator
@@ -22,14 +22,15 @@ class Ex11 extends FunSuite with ShouldMatchers {
       new QuadList(data.flatMap(line => lrQuadsFromLine(line, List.empty)))
     }
 
-    def rotate90Deg(): Grid = {
+    def rotate90Deg() = {
       new Grid(data.head.zipWithIndex.map((t) => data.map((row: List[Int]) => row(t._2)).reverse))
     }
-    def flipLR(): Grid = {
+   
+    def flipLR() = {
       new Grid(data map (x => x.reverse))
     }
 
-    def diagonalize(): Grid = {
+    def diagonalize() = {
       def shiftOneRow(rowsRemaining: List[List[Int]], lPad: List[Int], rPad: List[Int], rowsDone: List[List[Int]]): List[List[Int]] = {
         rowsRemaining match {
           case Nil => rowsDone
@@ -69,10 +70,11 @@ class Ex11 extends FunSuite with ShouldMatchers {
       List(20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54),
       List(1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48))
 
-  println(new Grid(data).quadsFromGrid.findMaxProduct)
-  println(new Grid(data).rotate90Deg.quadsFromGrid.findMaxProduct)
-  println(new Grid(data).diagonalize.rotate90Deg.quadsFromGrid.findMaxProduct)
-  println(new Grid(data).flipLR.diagonalize.rotate90Deg.quadsFromGrid.findMaxProduct)
+  println(
+      List(new Grid(data).toQuadList.findMaxProduct,
+      new Grid(data).rotate90Deg.toQuadList.findMaxProduct,
+      new Grid(data).diagonalize.rotate90Deg.toQuadList.findMaxProduct,
+      new Grid(data).flipLR.diagonalize.rotate90Deg.toQuadList.findMaxProduct).max)
 
 }
 
