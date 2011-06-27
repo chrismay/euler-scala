@@ -6,28 +6,33 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class Ex11 extends FunSuite with ShouldMatchers {
 
-  class QuadList(data: List[List[Int]]) {
-    def findMaxProduct = data.map((x: List[Int]) => x.reduce(_ * _)).max
+  
+  class QuadList(quads: List[QuadInt]) {
+    def findMaxProduct = quads.map(_.product).max
+  }
+  class QuadInt(ints:List[Int]){
+    def product = ints.reduce(_*_)
   }
 
-  class Grid(data: List[List[Int]]) {
+  class Grid(rows: List[List[Int]]) {
 
     def toQuadList() = {
-      def lrQuadsFromLine(line: List[Int], accumulator: List[List[Int]]): List[List[Int]] = {
+      def lrQuadsFromLine(line: List[Int], accumulator: List[QuadInt]): List[QuadInt] = {
         if (line.length < 4)
           accumulator
         else
-          lrQuadsFromLine(line.tail, accumulator :+ line.slice(0, 4))
+          lrQuadsFromLine(line.tail, accumulator :+ new QuadInt(line.slice(0, 4)))
       }
-      new QuadList(data.flatMap(line => lrQuadsFromLine(line, List.empty)))
+      new QuadList(rows.flatMap(line => lrQuadsFromLine(line, List.empty)))
     }
 
     def rotate90Deg() = {
-      new Grid(data.head.zipWithIndex.map((t) => data.map((row: List[Int]) => row(t._2)).reverse))
+      new Grid(rows.head.zipWithIndex.map { case (_,index) => rows.map(
+            (row: List[Int]) => row(index))}.reverse)
     }
    
     def flipLR() = {
-      new Grid(data map (x => x.reverse))
+      new Grid(rows map (x => x.reverse))
     }
 
     def diagonalize() = {
@@ -43,11 +48,11 @@ class Ex11 extends FunSuite with ShouldMatchers {
           }
         }
       }
-      new Grid(shiftOneRow(data, List.fill(data.size)(0), List.empty, List.empty))
+      new Grid(shiftOneRow(rows, List.fill(rows.size)(0), List.empty, List.empty))
     }
   }
 
-  val data =
+  val g =
     List(
       List(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
       List(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0),
@@ -71,10 +76,10 @@ class Ex11 extends FunSuite with ShouldMatchers {
       List(1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48))
 
   println(
-      List(new Grid(data).toQuadList.findMaxProduct,
-      new Grid(data).rotate90Deg.toQuadList.findMaxProduct,
-      new Grid(data).diagonalize.rotate90Deg.toQuadList.findMaxProduct,
-      new Grid(data).flipLR.diagonalize.rotate90Deg.toQuadList.findMaxProduct).max)
+      List(new Grid(g).toQuadList.findMaxProduct,
+      new Grid(g).rotate90Deg.toQuadList.findMaxProduct,
+      new Grid(g).diagonalize.rotate90Deg.toQuadList.findMaxProduct,
+      new Grid(g).flipLR.diagonalize.rotate90Deg.toQuadList.findMaxProduct).max)
 
 }
 
